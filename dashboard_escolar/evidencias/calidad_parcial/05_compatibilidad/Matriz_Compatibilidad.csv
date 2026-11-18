@@ -1,0 +1,7 @@
+﻿Navegador / dispositivo,Paginas,Resultado,Observaciones
+Chromium (Playwright) escritorio 1366x768,"Inicio, Materias",PASS,"Sin scroll horizontal, 4 tarjetas, buscador OK"
+Chromium (Playwright) movil 390x844,"Inicio, Materias",PASS,"Sin scroll horizontal, tarjetas en 1 columna"
+Firefox (capturas del alumno),"Endpoints JSON (categorias, materias?semestre=3)",PASS,Respuesta JSON visible; interfaz no probada
+Brave (captura del alumno),GET servicios/listar.php,PASS,Respuesta JSON visible; interfaz no probada
+Firefox / WebKit - interfaz,"Inicio, Materias",BLOCKED,No disponibles en el entorno de revision; el equipo debe ejecutarlo
+Dispositivo movil real (Android/iOS),"Inicio, Materias",NO PROBADO,Pendiente

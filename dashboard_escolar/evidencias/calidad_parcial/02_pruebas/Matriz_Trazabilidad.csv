@@ -1,0 +1,14 @@
+﻿Requisito,Descripcion,Casos de prueba,Resultado (ciclo 2),Defectos relacionados
+REQ-01,Listar materias,"UI-03, UI-04, API-02, API-12",PASS,"BUG-012 (cerrado), BUG-011"
+REQ-02,Consultar materia por ID,"API-03, API-04, API-15, API-16",PASS,BUG-003 (cerrado)
+REQ-03,Panel con resumen real,"UI-01, UI-05",FAIL,BUG-004
+REQ-04,Navegacion entre modulos,UI-06,FAIL,BUG-005
+REQ-05,Consultar servicios y categorias,"API-05, API-13",PASS,BUG-008
+REQ-06,Crear servicio,"API-06, API-07",PASS,"BUG-002, BUG-007"
+REQ-07,Actualizar servicio,"API-08, API-09",PASS,BUG-006
+REQ-08,Eliminar servicio,"API-10, API-11, API-14",PASS,"BUG-002 (cerrado), BUG-009"
+REQ-09,API disponible,API-01,PASS,-
+REQ-10,Responsive y compatibilidad,"UI-07, UI-08","PARCIAL (1 PASS, 1 BLOCKED)",-
+REQ-11,Version visible,UI-02,PASS,BUG-001 (cerrado)
+REQ-12,Contrato PLN,"API-02, API-05, API-13",PASS,-
+REQ-13,Configuracion segura,Sin caso ejecutado (API-14 cubre solo metodos),NO PROBADO,"BUG-002 (cerrado), BUG-010"

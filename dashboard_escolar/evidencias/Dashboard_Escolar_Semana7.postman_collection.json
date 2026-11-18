@@ -1,0 +1,475 @@
+{
+  "info": {
+    "name": "Dashboard Escolar - Semana 7",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/dashboard_escolar"
+    },
+    {
+      "key": "servicio_id",
+      "value": "3"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 Ping",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/ping.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ping.php"
+          ]
+        }
+      }
+    },
+    {
+      "name": "02 Listar materias",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/materias/listar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "listar.php"
+          ]
+        }
+      }
+    },
+    {
+      "name": "03 Ver materia válida",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/materias/ver.php?id=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "ver.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "04 Materia inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/materias/ver.php?id=9999",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "ver.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "9999"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "05 Listar servicios",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/listar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "listar.php"
+          ]
+        }
+      }
+    },
+    {
+      "name": "06 Crear servicio válido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set(\"servicio_id\", pm.response.json().id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/crear.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "crear.php"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Biblioteca\",\n  \"categoria\": \"Servicios\",\n  \"descripcion\": \"Consulta y préstamo de libros\",\n  \"horario\": \"07:00-20:00\",\n  \"ubicacion\": \"Edificio B\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "07 Crear servicio inválido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/crear.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "crear.php"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"categoria\": \"Servicios\",\n  \"descripcion\": \"Consulta y préstamo de libros\",\n  \"horario\": \"07:00-20:00\",\n  \"ubicacion\": \"Edificio B\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "08 Actualizar servicio",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/actualizar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "actualizar.php"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"{{servicio_id}}\",\n  \"nombre\": \"Biblioteca\",\n  \"categoria\": \"Servicios Escolares\",\n  \"descripcion\": \"Consulta y préstamo de libros\",\n  \"horario\": \"07:00-20:00\",\n  \"ubicacion\": \"Edificio B\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "08b Actualizar id inexistente",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/actualizar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "actualizar.php"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 9999,\n  \"nombre\": \"X\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "09 Eliminar servicio",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/eliminar.php?id={{servicio_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "eliminar.php"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "{{servicio_id}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "09b Eliminar sin id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/servicios/eliminar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "servicios",
+            "eliminar.php"
+          ]
+        }
+      }
+    },
+    {
+      "name": "A Materias semestre=3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/materias/listar.php?semestre=3",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "materias",
+            "listar.php"
+          ],
+          "query": [
+            {
+              "key": "semestre",
+              "value": "3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "B Listar categorías",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/categorias/listar.php",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "categorias",
+            "listar.php"
+          ]
+        }
+      }
+    }
+  ]
+}

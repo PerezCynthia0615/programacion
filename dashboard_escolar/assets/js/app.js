@@ -1,0 +1,1 @@
+console.log('Dashboard Escolar v0.1 cargado correctamente');

@@ -1,0 +1,25 @@
+﻿ID,Modulo,Caso de prueba,Como se ejecuto,Ciclo 1 (v0.3 original),Ciclo 2 (v0.3-quality-review),Defecto relacionado
+API-01,API,Ping,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-02,API,Listar materias,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-03,API,Ver materia id=1,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-04,API,Materia inexistente (id=9999) -> 404,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-05,API,Listar servicios,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-06,API,Crear servicio valido -> 201,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-07,API,Crear sin nombre -> 400,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-08,API,Actualizar servicio valido -> 200,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-09,API,Actualizar id inexistente -> 404,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-10,API,Eliminar servicio -> 200,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-11,API,Eliminar sin id -> 400,Postman (capturas del alumno) + ejecucion automatizada,PASS,PASS,-
+API-12,API,GET materias?semestre=3 devuelve solo semestre 3,Ejecucion automatizada (PHP+SQLite) / captura previa,PASS,PASS,-
+API-13,API,Listar categorias,Ejecucion automatizada (PHP+SQLite),PASS,PASS,-
+API-14,API,GET a eliminar.php no debe borrar (esperado 405),Ejecucion automatizada (PHP+SQLite),FAIL,PASS,BUG-002
+API-15,API,"Error 404 en formato estandar {ok,error,mensaje}",Ejecucion automatizada (PHP+SQLite),FAIL,PASS,BUG-003
+API-16,API,ID invalido (abc) en formato estandar -> 400,Ejecucion automatizada (PHP+SQLite),FAIL,PASS,BUG-003
+UI-01,Inicio,Panel muestra 4 tarjetas de resumen,Playwright / Chromium (desktop 1366 y movil 390),PASS,PASS,-
+UI-02,Inicio,Version visible (v0.3-quality-review) y footer sin alterar el layout,Playwright / Chromium (desktop 1366 y movil 390),FAIL,PASS,BUG-001
+UI-03,Materias,Tabla lista las 2 materias activas,Playwright / Chromium (desktop 1366 y movil 390),PASS,PASS,-
+UI-04,Materias,"Buscador filtra filas (""web"" -> 1 fila)",Playwright / Chromium (desktop 1366 y movil 390),PASS,PASS,-
+UI-05,Inicio,Tarjeta Servicios refleja los servicios reales (BD tiene 2; muestra 0),Playwright / Chromium (desktop 1366 y movil 390),FAIL,FAIL,BUG-004
+UI-06,Navegacion,"Enlaces del menu funcionales (0 enlaces ""#"")",Playwright / Chromium (desktop 1366 y movil 390),FAIL,FAIL,BUG-005
+UI-07,Responsive,Movil 390 px sin scroll horizontal (Inicio y Materias),Playwright / Chromium (desktop 1366 y movil 390),PASS,PASS,-
+UI-08,Compatibilidad,Interfaz en Firefox y Safari/WebKit,No ejecutado: navegadores no disponibles en el entorno de revision,BLOCKED,BLOCKED,-

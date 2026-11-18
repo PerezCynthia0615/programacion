@@ -1,0 +1,462 @@
+{
+ "ciclo1_original": [
+  {
+   "id": "API-01",
+   "desc": "Ping",
+   "metodo": "GET",
+   "url": "/ping.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"API del Dashboard Escolar funcionando\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-02",
+   "desc": "Listar materias",
+   "metodo": "GET",
+   "url": "/materias/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":2,\"nombre\":\"Implementa aplicaciones web\",\"semestre\":null,\"modulo\":\"Módulo IV\",\"activo\":1},{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"semestre\":3,\"modulo\":\"Módulo II\",\"activo\":1}]",
+   "nota": ""
+  },
+  {
+   "id": "API-03",
+   "desc": "Ver materia id=1",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=1",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"modulo\":\"Módulo II\",\"submodulo\":\"Sub 2\",\"semestre\":3,\"descripcion\":\"x\",\"activo\":1}",
+   "nota": ""
+  },
+  {
+   "id": "API-04",
+   "desc": "Materia inexistente id=9999",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=9999",
+   "esperado": 404,
+   "real": 404,
+   "estado": "PASS",
+   "cuerpo": "{\"error\":\"Materia no encontrada\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-05",
+   "desc": "Listar servicios",
+   "metodo": "GET",
+   "url": "/servicios/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":1,\"nombre\":\"Consulta de calificaciones\",\"categoria\":null,\"descripcion\":\"Consulta de calificaciones\",\"horario\":null,\"ubicacion\":null,\"activo\":1},{\"id\":2,\"nombre\":\"Consulta de calificaciones\",\"ca",
+   "nota": ""
+  },
+  {
+   "id": "API-06",
+   "desc": "Crear servicio válido",
+   "metodo": "POST",
+   "url": "/servicios/crear.php",
+   "esperado": 201,
+   "real": 201,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"id\":\"3\",\"mensaje\":\"Servicio creado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-07",
+   "desc": "Crear sin nombre",
+   "metodo": "POST",
+   "url": "/servicios/crear.php",
+   "esperado": 400,
+   "real": 400,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"El nombre es obligatorio\",\"mensaje\":\"El nombre es obligatorio\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-08",
+   "desc": "Actualizar servicio válido",
+   "metodo": "PUT",
+   "url": "/servicios/actualizar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"Servicio actualizado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-09",
+   "desc": "Actualizar id inexistente",
+   "metodo": "PUT",
+   "url": "/servicios/actualizar.php",
+   "esperado": 404,
+   "real": 404,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"Servicio no encontrado o sin cambios\",\"mensaje\":\"Servicio no encontrado o sin cambios\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-10",
+   "desc": "Eliminar servicio creado",
+   "metodo": "DELETE",
+   "url": "/servicios/eliminar.php?id=3",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"Servicio eliminado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-11",
+   "desc": "Eliminar sin id",
+   "metodo": "DELETE",
+   "url": "/servicios/eliminar.php",
+   "esperado": 400,
+   "real": 400,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"El ID es obligatorio\",\"mensaje\":\"El ID es obligatorio\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-12",
+   "desc": "Filtro semestre=3 devuelve solo semestre 3",
+   "metodo": "GET",
+   "url": "/materias/listar.php?semestre=3",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"semestre\":3,\"modulo\":\"Módulo II\",\"activo\":1}]",
+   "nota": ""
+  },
+  {
+   "id": "API-13",
+   "desc": "Listar categorías",
+   "metodo": "GET",
+   "url": "/categorias/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[]",
+   "nota": ""
+  },
+  {
+   "id": "API-14",
+   "desc": "GET no debe poder borrar (método incorrecto)",
+   "metodo": "GET",
+   "url": "/servicios/eliminar.php?id=1",
+   "esperado": 405,
+   "real": 200,
+   "estado": "FAIL",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"Servicio eliminado\"}",
+   "nota": "Esperado 405 Method Not Allowed"
+  },
+  {
+   "id": "API-15",
+   "desc": "Error 404 usa formato JSON estándar {ok,error,mensaje}",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=9999",
+   "esperado": 404,
+   "real": 404,
+   "estado": "FAIL",
+   "cuerpo": "{\"error\":\"Materia no encontrada\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-16",
+   "desc": "id inválido (abc) usa formato estándar",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=abc",
+   "esperado": 400,
+   "real": 400,
+   "estado": "FAIL",
+   "cuerpo": "{\"error\":\"ID inv\\u00e1lido\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-14b",
+   "desc": "Verificar que el servicio id=1 sigue existiendo tras el GET",
+   "metodo": "GET",
+   "url": "/servicios/listar.php",
+   "esperado": "2 registros",
+   "real": "1 registros",
+   "estado": "FAIL",
+   "cuerpo": "",
+   "nota": ""
+  }
+ ],
+ "ciclo2_corregida": [
+  {
+   "id": "API-01",
+   "desc": "Ping",
+   "metodo": "GET",
+   "url": "/ping.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"API del Dashboard Escolar funcionando\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-02",
+   "desc": "Listar materias",
+   "metodo": "GET",
+   "url": "/materias/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":2,\"nombre\":\"Implementa aplicaciones web\",\"semestre\":null,\"modulo\":\"Módulo IV\",\"activo\":1},{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"semestre\":3,\"modulo\":\"Módulo II\",\"activo\":1}]",
+   "nota": ""
+  },
+  {
+   "id": "API-03",
+   "desc": "Ver materia id=1",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=1",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"modulo\":\"Módulo II\",\"submodulo\":\"Sub 2\",\"semestre\":3,\"descripcion\":\"x\",\"activo\":1}",
+   "nota": ""
+  },
+  {
+   "id": "API-04",
+   "desc": "Materia inexistente id=9999",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=9999",
+   "esperado": 404,
+   "real": 404,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"Materia no encontrada\",\"mensaje\":\"Materia no encontrada\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-05",
+   "desc": "Listar servicios",
+   "metodo": "GET",
+   "url": "/servicios/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":1,\"nombre\":\"Consulta de calificaciones\",\"categoria\":null,\"descripcion\":\"Consulta de calificaciones\",\"horario\":null,\"ubicacion\":null,\"activo\":1},{\"id\":2,\"nombre\":\"Consulta de calificaciones\",\"ca",
+   "nota": ""
+  },
+  {
+   "id": "API-06",
+   "desc": "Crear servicio válido",
+   "metodo": "POST",
+   "url": "/servicios/crear.php",
+   "esperado": 201,
+   "real": 201,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"id\":\"3\",\"mensaje\":\"Servicio creado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-07",
+   "desc": "Crear sin nombre",
+   "metodo": "POST",
+   "url": "/servicios/crear.php",
+   "esperado": 400,
+   "real": 400,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"El nombre es obligatorio\",\"mensaje\":\"El nombre es obligatorio\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-08",
+   "desc": "Actualizar servicio válido",
+   "metodo": "PUT",
+   "url": "/servicios/actualizar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"Servicio actualizado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-09",
+   "desc": "Actualizar id inexistente",
+   "metodo": "PUT",
+   "url": "/servicios/actualizar.php",
+   "esperado": 404,
+   "real": 404,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"Servicio no encontrado\",\"mensaje\":\"Servicio no encontrado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-10",
+   "desc": "Eliminar servicio creado",
+   "metodo": "DELETE",
+   "url": "/servicios/eliminar.php?id=3",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":true,\"mensaje\":\"Servicio eliminado\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-11",
+   "desc": "Eliminar sin id",
+   "metodo": "DELETE",
+   "url": "/servicios/eliminar.php",
+   "esperado": 400,
+   "real": 400,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"El ID es obligatorio\",\"mensaje\":\"El ID es obligatorio\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-12",
+   "desc": "Filtro semestre=3 devuelve solo semestre 3",
+   "metodo": "GET",
+   "url": "/materias/listar.php?semestre=3",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[{\"id\":1,\"nombre\":\"Procesamiento de Lenguaje Natural\",\"semestre\":3,\"modulo\":\"Módulo II\",\"activo\":1}]",
+   "nota": ""
+  },
+  {
+   "id": "API-13",
+   "desc": "Listar categorías",
+   "metodo": "GET",
+   "url": "/categorias/listar.php",
+   "esperado": 200,
+   "real": 200,
+   "estado": "PASS",
+   "cuerpo": "[]",
+   "nota": ""
+  },
+  {
+   "id": "API-14",
+   "desc": "GET no debe poder borrar (método incorrecto)",
+   "metodo": "GET",
+   "url": "/servicios/eliminar.php?id=1",
+   "esperado": 405,
+   "real": 405,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"Método no permitido. Use DELETE\",\"mensaje\":\"Método no permitido. Use DELETE\"}",
+   "nota": "Esperado 405 Method Not Allowed"
+  },
+  {
+   "id": "API-15",
+   "desc": "Error 404 usa formato JSON estándar {ok,error,mensaje}",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=9999",
+   "esperado": 404,
+   "real": 404,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"Materia no encontrada\",\"mensaje\":\"Materia no encontrada\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-16",
+   "desc": "id inválido (abc) usa formato estándar",
+   "metodo": "GET",
+   "url": "/materias/ver.php?id=abc",
+   "esperado": 400,
+   "real": 400,
+   "estado": "PASS",
+   "cuerpo": "{\"ok\":false,\"error\":\"ID inválido\",\"mensaje\":\"ID inválido\"}",
+   "nota": ""
+  },
+  {
+   "id": "API-14b",
+   "desc": "Verificar que el servicio id=1 sigue existiendo tras el GET",
+   "metodo": "GET",
+   "url": "/servicios/listar.php",
+   "esperado": "2 registros",
+   "real": "2 registros",
+   "estado": "PASS",
+   "cuerpo": "",
+   "nota": ""
+  }
+ ],
+ "ui": {
+  "before": {
+   "chromium": {
+    "desktop": {
+     "index": {
+      "cards": 4,
+      "servCard": "0",
+      "hscroll": false,
+      "footerBesideContent": true,
+      "footerText": "Dashboard Escolar - Versión 0.3",
+      "deadLinks": 3,
+      "navLinks": 5
+     },
+     "materias": {
+      "filas": 2,
+      "hscroll": false,
+      "navLinks": 2,
+      "visiblesTrasBuscar": 1
+     }
+    },
+    "movil": {
+     "index": {
+      "cards": 4,
+      "servCard": "0",
+      "hscroll": false,
+      "footerBesideContent": false,
+      "footerText": "Dashboard Escolar - Versión 0.3",
+      "deadLinks": 3,
+      "navLinks": 5
+     },
+     "materias": {
+      "filas": 2,
+      "hscroll": false,
+      "navLinks": 2,
+      "visiblesTrasBuscar": 1
+     }
+    }
+   },
+   "firefox": "no disponible",
+   "webkit": "no disponible"
+  },
+  "after": {
+   "chromium": {
+    "desktop": {
+     "index": {
+      "cards": 4,
+      "servCard": "0",
+      "hscroll": false,
+      "footerBesideContent": false,
+      "footerText": "Dashboard Escolar - v0.3-quality-review",
+      "deadLinks": 3,
+      "navLinks": 5
+     },
+     "materias": {
+      "filas": 2,
+      "hscroll": false,
+      "navLinks": 2,
+      "visiblesTrasBuscar": 1
+     }
+    },
+    "movil": {
+     "index": {
+      "cards": 4,
+      "servCard": "0",
+      "hscroll": false,
+      "footerBesideContent": false,
+      "footerText": "Dashboard Escolar - v0.3-quality-review",
+      "deadLinks": 3,
+      "navLinks": 5
+     },
+     "materias": {
+      "filas": 2,
+      "hscroll": false,
+      "navLinks": 2,
+      "visiblesTrasBuscar": 1
+     }
+    }
+   },
+   "firefox": "no disponible",
+   "webkit": "no disponible"
+  }
+ }
+}
